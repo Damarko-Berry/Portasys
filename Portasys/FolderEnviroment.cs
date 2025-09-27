@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Portasys
 {
@@ -55,7 +53,7 @@ namespace Portasys
                 Directory.CreateDirectory(Path.Combine(Root, TemplatePaths[(SystemFolder)i]));
             }
 
-            
+
         }
 
         void PopulateTemplatePaths(OSPlatform platform = OSPlatform.Windows)
@@ -116,8 +114,8 @@ namespace Portasys
                     break;
             }
         }
-        Dictionary<SystemFolder, string> TemplatePaths= null;
+        Dictionary<SystemFolder, string> TemplatePaths = null;
     }
 
-    
+
 }

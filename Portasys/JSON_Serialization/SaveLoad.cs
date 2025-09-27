@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Newtonsoft.Json;
 using System.IO;
-using Newtonsoft.Json;
-using System.Security.Cryptography.X509Certificates;
 
 
 namespace Portasys.JSON_Serialization
@@ -15,7 +11,7 @@ namespace Portasys.JSON_Serialization
             // Ensure the project directory exists
             Directory.CreateDirectory(path);
             // Serialize the object to JSON
-            
+
             string jsonString = JsonConvert.SerializeObject(obj, Formatting.Indented);
             // Write the JSON string to a file
             File.WriteAllText(path, jsonString);
@@ -24,7 +20,7 @@ namespace Portasys.JSON_Serialization
         public static T Load<T>(string filePath)
         {
             // Read the JSON string from the file
-            
+
             if (!File.Exists(filePath))
             {
                 throw new FileNotFoundException("The specified file was not found.", filePath);

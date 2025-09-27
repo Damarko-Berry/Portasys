@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Xml.Serialization;
 
 namespace Portasys.Xml_Serialization
@@ -17,7 +14,7 @@ namespace Portasys.Xml_Serialization
             stream.Close();
         }
 
-        public static T Load <T>(string Filename)
+        public static T Load<T>(string Filename)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             StreamReader sr = new StreamReader(Filename);

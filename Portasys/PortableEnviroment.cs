@@ -42,16 +42,24 @@ namespace Portasys
                     Initialize(rootInfo.Platform);
                     break;
                 }
-                var parentDir = Directory.GetParent(currentDir);
-                if (parentDir == null)
+                try
                 {
-                    throw new FileNotFoundException("root.json not found in any parent directories.");
+                    var parentDir = Directory.GetParent(currentDir);
+                    if (parentDir == null)
+                    {
+                        break;
+                    }
+                    currentDir = parentDir.FullName;
                 }
-                currentDir = parentDir.FullName;
+                catch
+                {
+                    break;
+                }
             }
         }
         public static void Initialize()
         {
+            FindRootFile();
             if (Enviroment == null)
             {
                 var P = GetCurrentPlatform();
@@ -70,6 +78,7 @@ namespace Portasys
         }
         public static void Initialize(OSPlatform platform = OSPlatform.Windows)
         {
+            FindRootFile();
             if (Enviroment == null)
             {
                 Enviroment = new FolderEnviroment(platform);
@@ -79,7 +88,6 @@ namespace Portasys
                 Enviroment.Generate();
             }
         }
-
         public static string GetFolder(SystemFolder specialFolder)
         {
             if (Enviroment == null)
